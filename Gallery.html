@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/logo_sf.png" />
+    <title>Stanced</title>
+    <link rel="stylesheet" href="Gallery.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-bar">
+          <li class="logo">
+            <a href="ShowRoom.html"><img src="images/logo_sf.png" /></a>
+          </li>
+          <input type="checkbox" id="check" />
+          <span class="menu">
+            <li><a href="ShowRoom.html">Home</a></li>
+            <li><a href="Gallery.html">Gallery</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Contacts.html">Contact</a></li>
+            <li><a href="Login.html">Forum</a></li>
+            <label for="check" class="close-menu"
+              ><i class="fas fa-times"></i
+            ></label>
+          </span>
+          <label for="check" class="open-menu"
+            ><i class="fas fa-bars"></i
+          ></label>
+        </ul>
+      </nav>
+    </header>
+    <center>
+      <iframe
+        class="vid"
+        src="https://www.youtube.com/embed/ot0Wa5cR0GU?si=wMQjFp2CES4nZ-uk"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </center>
+    <div class="gallery">
+      <div class="grid-wrapper">
+        <div>
+          <img src="images/1.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/2.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/3.png" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/4.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/5.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/6.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/7.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/8.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/9.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/10.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/11.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/12.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/13.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/14.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/15.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/16.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/17.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/18.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/19.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/20.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/21.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/22.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/23.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/24.jpg" alt="stanced car" />
+        </div>
+        <div>
+          <img src="images/25.jpg" alt="stanced car" />
+        </div>
+      </div>
+    </div>
+    <script>
+      // Gallery Initialization
+      document.addEventListener("DOMContentLoaded", () => {
+        const gallery = document.querySelector(".gallery .grid-wrapper");
+
+        // Load images from localStorage
+        const storedImages =
+          JSON.parse(localStorage.getItem("galleryImages")) || [];
+
+        storedImages.forEach((imageSrc, index) => {
+          createImageElement(imageSrc, index);
+        });
+
+        function createImageElement(imageSrc, index) {
+          const imgWrapper = document.createElement("div");
+          imgWrapper.classList.add("image-wrapper");
+
+          const img = document.createElement("img");
+          img.src = imageSrc;
+          img.alt = "Uploaded Image";
+
+          // Add double-click event to remove the image
+          img.addEventListener("dblclick", () => {
+            removeImage(index);
+          });
+
+          // Append elements
+          imgWrapper.appendChild(img);
+          gallery.appendChild(imgWrapper);
+        }
+
+        function removeImage(index) {
+          // Remove the specific image from localStorage
+          const updatedImages =
+            JSON.parse(localStorage.getItem("galleryImages")) || [];
+          updatedImages.splice(index, 1); // Remove the image at the given index
+          localStorage.setItem("galleryImages", JSON.stringify(updatedImages));
+
+          // Refresh the whole page
+          location.reload();
+        }
+      });
+    </script>
+  </body>
+  <footer>
+    <p class="copyright">Copyright © 2024 STANCED. All rights reserved.</p>
+  </footer>
+</html>
