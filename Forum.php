@@ -81,19 +81,19 @@ $user_name = htmlspecialchars($_SESSION['user_name']);
         const chatForm = document.getElementById('chat-form');
         const messageInput = document.getElementById('message');
 
-        // Função para carregar mensagens
+        // load messages function
         async function loadMessages() {
             try {
                 const response = await fetch('chat.php?action=load');
                 const messages = await response.text();
                 chatBox.innerHTML = messages;
-                chatBox.scrollTop = chatBox.scrollHeight; // Rolagem automática para o final
+                chatBox.scrollTop = chatBox.scrollHeight; // auto end scroll
             } catch (error) {
-                console.error('Erro ao carregar mensagens:', error);
+                console.error('unabble to load messages:', error);
             }
         }
 
-        // Função para enviar mensagens
+        // send message function
         async function sendMessage(message) {
             try {
                 await fetch('chat.php?action=send', {
@@ -106,11 +106,11 @@ $user_name = htmlspecialchars($_SESSION['user_name']);
                 messageInput.value = '';
                 loadMessages();
             } catch (error) {
-                console.error('Erro ao enviar mensagem:', error);
+                console.error('unabble to send the message:', error);
             }
         }
 
-        // Evento de envio do formulário
+        // form send event
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const message = messageInput.value.trim();
@@ -119,9 +119,9 @@ $user_name = htmlspecialchars($_SESSION['user_name']);
             }
         });
 
-        // Carregar mensagens periodicamente
+        // periodically loading messages
         setInterval(loadMessages, 3000);
-        loadMessages(); // Carregar inicialmente
+        loadMessages(); // inicial load
     </script>
 </body>
 </html>

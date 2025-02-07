@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_name'])) {
     exit;
 }
 
-// Recupera o ID do usuário logado
+// Recovers logged user ID
 $user_name = $_SESSION['user_name'];
 $user_query = "SELECT id FROM users WHERE name = '$user_name'";
 $user_result = mysqli_query($conn, $user_query);
@@ -20,7 +20,7 @@ if ($user_row = mysqli_fetch_assoc($user_result)) {
 }
 
 if ($_GET['action'] === 'load') {
-    // Carregar as mensagens
+    // Loades messages
     $query = "SELECT chat_messages.message, chat_messages.created_at, users.name 
               FROM chat_messages 
               JOIN users ON chat_messages.user_id = users.id 
@@ -38,7 +38,7 @@ if ($_GET['action'] === 'load') {
 }
 
 if ($_GET['action'] === 'send') {
-    // Enviar mensagem
+    // Send message
     if (isset($_POST['message'])) {
         $message = mysqli_real_escape_string($conn, $_POST['message']);
         $query = "INSERT INTO chat_messages (user_id, message) VALUES ('$user_id', '$message')";
